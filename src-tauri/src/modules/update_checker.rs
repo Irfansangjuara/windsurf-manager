@@ -3,9 +3,10 @@ use std::time::{SystemTime, UNIX_EPOCH};
 use crate::modules::logger;
 use chrono::Utc;
 
-const GITHUB_API_URL: &str = "https://api.github.com/repos/lbjlaq/Antigravity-Manager/releases/latest";
-const GITHUB_RAW_URL: &str = "https://raw.githubusercontent.com/lbjlaq/Antigravity-Manager/main/package.json";
-const JSDELIVR_URL: &str = "https://cdn.jsdelivr.net/gh/lbjlaq/Antigravity-Manager@main/package.json";
+const REPO_SLUG: &str = "Irfansangjuara/windsurf-manager";
+const GITHUB_API_URL: &str = "https://api.github.com/repos/Irfansangjuara/windsurf-manager/releases/latest";
+const GITHUB_RAW_URL: &str = "https://raw.githubusercontent.com/Irfansangjuara/windsurf-manager/main/package.json";
+const JSDELIVR_URL: &str = "https://cdn.jsdelivr.net/gh/Irfansangjuara/windsurf-manager@main/package.json";
 const CURRENT_VERSION: &str = env!("CARGO_PKG_VERSION");
 const DEFAULT_CHECK_INTERVAL_HOURS: u64 = 24;
 
@@ -51,7 +52,7 @@ struct GitHubRelease {
     published_at: String,
 }
 
-const UPDATER_JSON_URL: &str = "https://github.com/lbjlaq/Antigravity-Manager/releases/latest/download/updater.json";
+const UPDATER_JSON_URL: &str = "https://github.com/Irfansangjuara/windsurf-manager/releases/latest/download/updater.json";
 
 /// Check for updates with improved strategy:
 /// 1. Check updater.json (Source of Truth for Auto-Update)
@@ -143,7 +144,7 @@ async fn check_updater_json() -> Result<UpdateInfo, String> {
         logger::log_info(&format!("Up to date (updater.json): {} (Matches {})", current_version, latest_version));
     }
 
-    let download_url = format!("https://github.com/lbjlaq/Antigravity-Manager/releases/tag/v{}", latest_version);
+    let download_url = format!("https://github.com/{}/releases/tag/v{}", REPO_SLUG, latest_version);
 
     Ok(UpdateInfo {
         current_version,
@@ -158,7 +159,7 @@ async fn check_updater_json() -> Result<UpdateInfo, String> {
 
 async fn create_client() -> Result<reqwest::Client, String> {
     let mut builder = reqwest::Client::builder()
-        .user_agent("Antigravity-Manager")
+        .user_agent("Windsurf-Manager")
         .timeout(std::time::Duration::from_secs(10));
 
     // Load config to check for upstream proxy
@@ -256,7 +257,7 @@ async fn check_static_url(url: &str, source_name: &str) -> Result<UpdateInfo, St
     }
 
     // fallback sources generally don't provide release notes or download specific URL, construct generic
-    let download_url = "https://github.com/lbjlaq/Antigravity-Manager/releases/latest".to_string();
+    let download_url = format!("https://github.com/{}/releases/latest", REPO_SLUG);
     let release_notes = format!("New version detected via {}. Please check release page for details.", source_name);
 
     Ok(UpdateInfo {
@@ -360,6 +361,8 @@ pub fn is_homebrew_installed() -> bool {
     #[cfg(target_os = "macos")]
     {
         let caskroom_paths = [
+            "/opt/homebrew/Caskroom/windsurf-manager",
+            "/usr/local/Caskroom/windsurf-manager",
             "/opt/homebrew/Caskroom/antigravity-tools",
             "/usr/local/Caskroom/antigravity-tools",
         ];
@@ -375,7 +378,23 @@ pub fn is_homebrew_installed() -> bool {
     false
 }
 
-/// Execute `brew upgrade --cask antigravity-tools` with timeout (macOS only)
+#[cfg(target_os = "macos")]
+fn detect_homebrew_cask_name() -> &'static str {
+    let windsurf_paths = [
+        "/opt/homebrew/Caskroom/windsurf-manager",
+        "/usr/local/Caskroom/windsurf-manager",
+    ];
+
+    for path in &windsurf_paths {
+        if std::path::Path::new(path).exists() {
+            return "windsurf-manager";
+        }
+    }
+
+    "antigravity-tools"
+}
+
+/// Execute `brew upgrade --cask <detected-token>` with timeout (macOS only)
 #[cfg(not(target_os = "macos"))]
 pub async fn brew_upgrade_cask() -> Result<String, String> {
     Err("brew_not_supported".to_string())
@@ -383,7 +402,8 @@ pub async fn brew_upgrade_cask() -> Result<String, String> {
 
 #[cfg(target_os = "macos")]
 pub async fn brew_upgrade_cask() -> Result<String, String> {
-    logger::log_info("Starting Homebrew Cask upgrade for antigravity-tools...");
+    let cask_name = detect_homebrew_cask_name();
+    logger::log_info(&format!("Starting Homebrew Cask upgrade for {}...", cask_name));
 
     // Find brew binary
     let brew_path = if std::path::Path::new("/opt/homebrew/bin/brew").exists() {
@@ -398,7 +418,7 @@ pub async fn brew_upgrade_cask() -> Result<String, String> {
     let result = tokio::time::timeout(
         std::time::Duration::from_secs(180),
         tokio::process::Command::new(brew_path)
-            .args(["upgrade", "--cask", "antigravity-tools"])
+            .args(["upgrade", "--cask", cask_name])
             .output()
     ).await;
 

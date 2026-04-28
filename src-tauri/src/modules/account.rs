@@ -216,6 +216,20 @@ mod tests {
     }
 
     #[test]
+    fn test_detects_upstream_device_limit_message_as_blocked() {
+        let reason = "Failed to log in: [permission_denied] api server wire error: too many free user accounts for this device, please use an existing account or upgrade to a paid plan";
+        assert!(is_account_access_blocked_message(reason));
+    }
+
+    #[test]
+    fn test_formats_upstream_device_limit_message_clearly() {
+        let reason = "Failed to log in: [permission_denied] api server wire error: too many free user accounts for this device";
+        let formatted = format_switch_refresh_error(reason);
+        assert!(formatted.contains("cannot bypass provider-side device or plan limits"));
+        assert!(formatted.contains("official client"));
+    }
+
+    #[test]
     fn test_save_account_index_roundtrip() {
         let _guard = TEST_MUTEX.lock().unwrap();
         let dir = TestDataDir::new();
@@ -1121,6 +1135,9 @@ fn is_account_access_blocked_message(message: &str) -> bool {
         || text.contains("invalid_grant")
         || text.contains("resource_exhausted")
         || text.contains("resource has been exhausted")
+        || text.contains("permission_denied")
+        || text.contains("too many free user accounts for this device")
+        || text.contains("please use an existing account or upgrade to a paid plan")
 }
 
 fn format_switch_refresh_error(message: &str) -> String {
@@ -1151,6 +1168,16 @@ fn format_switch_refresh_error(message: &str) -> String {
     if lower.contains("resource_exhausted") || lower.contains("resource has been exhausted") {
         return format!(
             "Token refresh failed: account is rate-limited or temporarily restricted (RESOURCE_EXHAUSTED). Please retry later. Raw error: {}",
+            message
+        );
+    }
+
+    if lower.contains("permission_denied")
+        || lower.contains("too many free user accounts for this device")
+        || lower.contains("please use an existing account or upgrade to a paid plan")
+    {
+        return format!(
+            "Account switch blocked by the upstream service for this account/device combination. Windsurf Manager cannot bypass provider-side device or plan limits. Please use an authorized existing account, upgrade per provider policy, or complete sign-in in the official client first. Raw error: {}",
             message
         );
     }

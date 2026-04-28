@@ -1,10 +1,10 @@
 services:
-  antigravity-manager:
+  windsurf-manager:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    image: lbjlaq/antigravity-manager
-    container_name: antigravity-manager
+    image: irfansangjuara/windsurf-manager
+    container_name: windsurf-manager
     network_mode: host  # 使用宿主机网络，可直接访问 localhost:8045
     # ports:  # host 模式不需要端口映射
     #   - "8045:8045"

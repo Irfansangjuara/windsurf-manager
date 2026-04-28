@@ -1,4 +1,4 @@
-cask "antigravity-tools" do
+cask "windsurf-manager" do
   version "4.1.32"
   sha256 :no_check
 
@@ -23,7 +23,7 @@ cask "antigravity-tools" do
         sudo xattr -rd com.apple.quarantine "/Applications/Windsurf Manager.app"
 
       Or install with the --no-quarantine flag:
-        brew install --cask --no-quarantine antigravity-tools
+        brew install --cask --no-quarantine windsurf-manager
     EOS
   end
 

@@ -21,6 +21,13 @@ const OAUTH_HINTS = [
     'not authorized',
 ];
 
+const DEVICE_LIMIT_HINTS = [
+    'permission_denied',
+    'too many free user accounts for this device',
+    'existing account or upgrade to a paid plan',
+    'device limit',
+];
+
 function includesAny(text: string, hints: string[]): boolean {
     return hints.some((hint) => text.includes(hint));
 }
@@ -33,6 +40,10 @@ export function getValidationBlockedStatusLabel(
 
     if (includesAny(normalizedReason, RATE_LIMIT_HINTS)) {
         return t('accounts.status.risk_controlled', { defaultValue: 'Risk / Rate Limited' });
+    }
+
+    if (includesAny(normalizedReason, DEVICE_LIMIT_HINTS)) {
+        return t('accounts.status.device_limit_reached', { defaultValue: 'Device Limit Reached' });
     }
 
     if (includesAny(normalizedReason, OAUTH_HINTS)) {

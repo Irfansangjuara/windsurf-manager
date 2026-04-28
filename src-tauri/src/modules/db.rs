@@ -295,8 +295,14 @@ pub fn write_service_machine_id(db_path: &std::path::Path, service_machine_id: &
     )
     .map_err(|e| format!("Failed to write serviceMachineId: {}", e))?;
 
+    conn.execute(
+        "INSERT OR REPLACE INTO ItemTable (key, value) VALUES (?, ?)",
+        ["storage.serviceMachineId", service_machine_id],
+    )
+    .map_err(|e| format!("Failed to write storage.serviceMachineId: {}", e))?;
+
     crate::modules::logger::log_info(&format!(
-        "Successfully injected serviceMachineId: {}",
+        "Successfully injected serviceMachineId/storage.serviceMachineId: {}",
         service_machine_id
     ));
     

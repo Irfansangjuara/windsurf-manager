@@ -1,5 +1,5 @@
 services:
-  antigravity-manager:
+  windsurf-manager:
     build:
       context: ..
       dockerfile: docker/Dockerfile.backend.localdist

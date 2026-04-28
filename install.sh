@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Antigravity Tools Install Script (Linux + macOS)
-# Usage: curl -fsSL https://raw.githubusercontent.com/lbjlaq/Antigravity-Manager/main/install.sh | bash
+# Windsurf Manager Install Script (Linux + macOS)
+# Usage: curl -fsSL https://raw.githubusercontent.com/Irfansangjuara/windsurf-manager/main/install.sh | bash
 #
 # Environment variables:
 #   VERSION     - Install specific version (e.g., "4.1.20"), default: latest
@@ -15,9 +15,9 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-REPO="lbjlaq/Antigravity-Manager"
-APP_NAME="Antigravity Tools"
-APP_ID="com.lbjlaq.antigravity-tools"
+REPO="Irfansangjuara/windsurf-manager"
+APP_NAME="Windsurf Manager"
+APP_ID="com.irfansangjuara.windsurf-manager"
 GITHUB_API="https://api.github.com/repos/${REPO}/releases"
 
 # Helper functions
@@ -119,7 +119,7 @@ get_version() {
 
     # Method 1: Try GitHub API
     local response
-    if response=$(curl -fsSL -H "User-Agent: Antigravity-Installer" "${GITHUB_API}/latest" 2>/dev/null); then
+    if response=$(curl -fsSL -H "User-Agent: Windsurf-Installer" "${GITHUB_API}/latest" 2>/dev/null); then
         RELEASE_VERSION=$(echo "$response" | grep '"tag_name"' | sed -E 's/.*"v([^"]+)".*/\1/')
         if [[ -n "$RELEASE_VERSION" ]]; then
             info "Latest version: v$RELEASE_VERSION"
@@ -151,32 +151,29 @@ build_download_url() {
         linux)
             case "$PKG_EXT" in
                 deb)
-                    # Antigravity.Tools_4.1.32_amd64.deb or _arm64.deb
-                    DOWNLOAD_URL="${base_url}/Antigravity.Tools_${RELEASE_VERSION}_${DEB_ARCH}.deb"
-                    FILENAME="Antigravity.Tools_${RELEASE_VERSION}_${DEB_ARCH}.deb"
+                    DOWNLOAD_URL="${base_url}/Windsurf.Manager_${RELEASE_VERSION}_${DEB_ARCH}.deb"
+                    FILENAME="Windsurf.Manager_${RELEASE_VERSION}_${DEB_ARCH}.deb"
                     ;;
                 rpm)
-                    # Antigravity.Tools-4.1.32-1.x86_64.rpm or -1.aarch64.rpm
-                    DOWNLOAD_URL="${base_url}/Antigravity.Tools-${RELEASE_VERSION}-1.${RPM_ARCH}.rpm"
-                    FILENAME="Antigravity.Tools-${RELEASE_VERSION}-1.${RPM_ARCH}.rpm"
+                    DOWNLOAD_URL="${base_url}/Windsurf.Manager-${RELEASE_VERSION}-1.${RPM_ARCH}.rpm"
+                    FILENAME="Windsurf.Manager-${RELEASE_VERSION}-1.${RPM_ARCH}.rpm"
                     ;;
                 AppImage)
-                    # Antigravity.Tools_4.1.32_amd64.AppImage or _aarch64.AppImage
                     local appimage_arch
                     if [[ "$ARCH_LABEL" == "x86_64" ]]; then
                         appimage_arch="amd64"
                     else
                         appimage_arch="aarch64"
                     fi
-                    DOWNLOAD_URL="${base_url}/Antigravity.Tools_${RELEASE_VERSION}_${appimage_arch}.AppImage"
-                    FILENAME="Antigravity.Tools_${RELEASE_VERSION}_${appimage_arch}.AppImage"
+                    DOWNLOAD_URL="${base_url}/Windsurf.Manager_${RELEASE_VERSION}_${appimage_arch}.AppImage"
+                    FILENAME="Windsurf.Manager_${RELEASE_VERSION}_${appimage_arch}.AppImage"
                     ;;
             esac
             ;;
         macos)
             # Prefer universal DMG, fallback to arch-specific
-            DOWNLOAD_URL="${base_url}/Antigravity.Tools_${RELEASE_VERSION}_universal.dmg"
-            FILENAME="Antigravity.Tools_${RELEASE_VERSION}_universal.dmg"
+            DOWNLOAD_URL="${base_url}/Windsurf.Manager_${RELEASE_VERSION}_universal.dmg"
+            FILENAME="Windsurf.Manager_${RELEASE_VERSION}_universal.dmg"
             ;;
     esac
 
@@ -217,10 +214,10 @@ install_linux() {
             local install_dir="${HOME}/.local/bin"
             run mkdir -p "$install_dir"
             run chmod +x "$DOWNLOAD_PATH"
-            run cp "$DOWNLOAD_PATH" "${install_dir}/antigravity-tools"
+            run cp "$DOWNLOAD_PATH" "${install_dir}/windsurf-manager"
 
             if [[ ":$PATH:" != *":${install_dir}:"* ]]; then
-                warn "Add ${install_dir} to your PATH to run antigravity-tools from anywhere"
+                warn "Add ${install_dir} to your PATH to run windsurf-manager from anywhere"
 
                 local shell_name rc_file export_line
                 shell_name="$(basename "${SHELL:-/bin/bash}")"

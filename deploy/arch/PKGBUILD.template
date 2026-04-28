@@ -1,14 +1,14 @@
-# Maintainer: Antigravity Team <https://github.com/lbjlaq/Antigravity-Manager>
-pkgname=antigravity-tools-bin
+# Maintainer: Windsurf Manager Contributors <https://github.com/Irfansangjuara/windsurf-manager>
+pkgname=windsurf-manager-bin
 pkgver=${_pkgver}
 pkgrel=1
-pkgdesc="Professional AI Account Management & Proxy System (Binary Version)"
+pkgdesc="Multi-account AI operations, proxy control, and routing manager (Binary Version)"
 arch=('x86_64' 'aarch64')
-url="https://github.com/lbjlaq/Antigravity-Manager"
+url="https://github.com/Irfansangjuara/windsurf-manager"
 license=('CC-BY-NC-SA-4.0')
 depends=('gtk3' 'libappindicator-gtk3' 'openssl' 'webkit2gtk-4.1' 'libnm' 'xdg-utils' 'librsvg')
-provides=('antigravity-tools')
-conflicts=('antigravity-tools')
+provides=('windsurf-manager')
+conflicts=('windsurf-manager')
 options=('!strip' '!debug')
 
 source_x86_64=("${pkgname}-${pkgver}-x86_64.deb::${_url_x86_64}")

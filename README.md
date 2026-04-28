@@ -1,11 +1,11 @@
-# Antigravity Tools 🚀
-> Professional AI Account Management & Protocol Proxy System (v4.1.32)
+# Windsurf Manager 🚀
+> Multi-Account Management, Proxy Control, and AI Routing Operations (v4.1.32)
 
 <div align="center">
-  <img src="public/icon.png" alt="Antigravity Logo" width="120" height="120" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+  <img src="public/icon.png" alt="Windsurf Manager Logo" width="120" height="120" style="border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
 
-  <h3>Your Personal High-Performance AI Dispatch Gateway</h3>
-  <p>Seamlessly proxy Gemini & Claude. OpenAI-Compatible. Privacy First.</p>
+  <h3>Your Multi-Account AI Operations Console</h3>
+  <p>Manage many accounts, proxy traffic, and model routing from one local control plane.</p>
   
   <p>
     <a href="https://github.com/Irfansangjuara/windsurf-manager">
@@ -32,16 +32,16 @@
 
 ---
 
-**Antigravity Tools** is an all-in-one desktop application designed for developers and AI enthusiasts. It perfectly combines multi-account management, protocol conversion, and smart request scheduling to provide you with a stable, high-speed, and low-cost **Local AI Relay Station**.
+**Windsurf Manager** is a desktop control plane for operating multiple AI accounts, local proxy services, and routing policies from one place.
 
-By leveraging this app, you can transform common Web Sessions (Google/Anthropic) into standardized API interfaces, completely eliminating the protocol gap between different providers.
+It combines account operations, protocol conversion, and policy-based request routing so you can run a clean, private, and reliable local AI gateway.
 
 ## 💖 Sponsors
 
 | Sponsor | Description |
 | :---: | :--- |
 | <img src="docs/images/packycode_logo.png" width="200" alt="PackyCode Logo"> | Thanks to **PackyCode** for sponsoring this project! PackyCode is a reliable and efficient API relay service provider, offering relays for various services such as Claude Code, Codex, and Gemini. PackyCode provides a special offer for users of this project: Register using [this link](https://www.packyapi.com/register?aff=Ctrler) and enter the **"Ctrler"** coupon code when topping up to enjoy a **10% discount**. |
-| <img src="docs/images/AICodeMirror.jpg" width="200" alt="AICodeMirror Logo"> | Thanks to **AICodeMirror** for sponsoring this project! AICodeMirror provides official high-stability relay services for Claude Code / Codex / Gemini CLI, supporting enterprise-grade concurrency, fast invoicing, and 24/7 dedicated technical support. Claude Code / Codex / Gemini official channels at 38% / 2% / 9% of original price, with extra discounts on top-ups! AICodeMirror offers special benefits for Antigravity-Manager users: register via [this link](https://www.aicodemirror.com/register?invitecode=MV5XUM) to enjoy 20% off your first top-up, and enterprise customers can get up to 25% off! |
+| <img src="docs/images/AICodeMirror.jpg" width="200" alt="AICodeMirror Logo"> | Thanks to **AICodeMirror** for sponsoring this project! AICodeMirror provides official high-stability relay services for Claude Code / Codex / Gemini CLI, supporting enterprise-grade concurrency, fast invoicing, and 24/7 dedicated technical support. Claude Code / Codex / Gemini official channels at 38% / 2% / 9% of original price, with extra discounts on top-ups! AICodeMirror offers special benefits for Windsurf Manager users: register via [this link](https://www.aicodemirror.com/register?invitecode=MV5XUM) to enjoy 20% off your first top-up, and enterprise customers can get up to 25% off! |
 | <img src="https://coder.visioncoder.cn/logo.png" width="200" alt="VisionCoder Logo"> | Thanks to VisionCoder for supporting this project. [VisionCoder Developer Platform](https://coder.visioncoder.cn) is a reliable and efficient API relay service provider, offering access to mainstream AI models such as Claude Code, Codex, and Gemini. It helps developers and teams integrate AI capabilities more easily and improve productivity. VisionCoder is offering a limited-time [Token Plan](https://coder.visioncoder.cn) promotion for our users: register via [this link](https://coder.visioncoder.cn) and buy 1 month to get 1 month free. |
 
 
@@ -96,7 +96,7 @@ If you like this project, you might also be interested in:
 | | |
 | :---: | :---: |
 | ![Dashboard - Global Quota Monitoring & One-click Switch](docs/images/dashboard-light.png) <br> Dashboard | ![Account List - High-density Quota Display & Smart 403 Labeling](docs/images/accounts-light.png) <br> Account List |
-| ![About Page - About Antigravity Tools](docs/images/about-dark.png) <br> About Page | ![API Proxy - Service Control](docs/images/v3/proxy-settings.png) <br> API Proxy |
+| ![About Page - Windsurf Manager](docs/images/about-dark.png) <br> About Page | ![API Proxy - Service Control](docs/images/v3/proxy-settings.png) <br> API Proxy |
 | ![Settings - General Config](docs/images/settings-dark.png) <br> Settings | |
 
 ### 💡 Usage Examples
@@ -110,7 +110,7 @@ If you like this project, you might also be interested in:
 
 ```mermaid
 graph TD
-    Client([External Apps: Claude Code/NextChat]) -->|OpenAI/Anthropic| Gateway[Antigravity Axum Server]
+    Client([External Apps: Claude Code/NextChat]) -->|OpenAI/Anthropic| Gateway[Windsurf Manager Axum Server]
     Gateway --> Middleware[Middleware: Auth/Rate Limit/Logs]
     Middleware --> Router[Model Router: ID Mapping]
     Router --> Dispatcher[Dispatcher: Rotation/Weights]
@@ -130,12 +130,12 @@ Automatically detects your OS, architecture, and package manager — one command
 
 **Linux / macOS:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/lbjlaq/Antigravity-Manager/v4.1.32/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Irfansangjuara/windsurf-manager/main/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/lbjlaq/Antigravity-Manager/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/Irfansangjuara/windsurf-manager/main/install.ps1 | iex
 ```
 
 > **Supported formats**: Linux (`.deb` / `.rpm` / `.AppImage`) | macOS (`.dmg`) | Windows (NSIS `.exe`)
@@ -147,10 +147,10 @@ If you have [Homebrew](https://brew.sh/) installed, you can also install via:
 
 ```bash
 # 1. Tap the repository
-brew tap lbjlaq/antigravity-manager https://github.com/lbjlaq/Antigravity-Manager
+brew tap irfansangjuara/windsurf-manager https://github.com/Irfansangjuara/windsurf-manager
 
-# 2. Install the app
-brew install --cask antigravity-tools
+# 2. Install the compatibility cask
+brew install --cask windsurf-manager
 ```
 > **Tip**: If you encounter permission issues, add the `--no-quarantine` flag.
 
@@ -159,20 +159,20 @@ You can choose to install via the one-click script or Homebrew:
 
 **Option 1: One-click script (Recommended)**
 ```bash
-curl -sSL https://raw.githubusercontent.com/lbjlaq/Antigravity-Manager/main/deploy/arch/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/Irfansangjuara/windsurf-manager/main/deploy/arch/install.sh | bash
 ```
 
 **Option 2: via Homebrew** (If you have [Linuxbrew](https://sh.brew.sh/) installed)
 ```bash
-brew tap lbjlaq/antigravity-manager https://github.com/lbjlaq/Antigravity-Manager
-brew install --cask antigravity-tools
+brew tap irfansangjuara/windsurf-manager https://github.com/Irfansangjuara/windsurf-manager
+brew install --cask windsurf-manager
 ```
 
 #### Other Linux Distributions
 The AppImage will be automatically symlinked to your binary path with executable permissions.
 
 ### Option B: Manual Download
-Download from [GitHub Releases](https://github.com/lbjlaq/Antigravity-Manager/releases):
+Download from [GitHub Releases](https://github.com/Irfansangjuara/windsurf-manager/releases):
 *   **macOS**: `.dmg` (Universal, Apple Silicon & Intel)
 *   **Windows**: `.msi` or portable `.zip`
 *   **Linux**: `.deb` or `AppImage`
@@ -184,15 +184,15 @@ If you prefer running in a containerized environment, we provide a native Docker
 # Option 1: Direct Run (Recommended)
 # - API_KEY: Required. Used for AI request authentication.
 # - WEB_PASSWORD: Optional. Used for Web UI login. Defaults to API_KEY if NOT set.
-docker run -d --name antigravity-manager \
+docker run -d --name windsurf-manager \
   -p 8045:8045 \
   -e API_KEY=sk-your-api-key \
   -e WEB_PASSWORD=your-login-password \
   -e ABV_MAX_BODY_SIZE=104857600 \
   -v ~/.antigravity_tools:/root/.antigravity_tools \
-  lbjlaq/antigravity-manager:latest
+  irfansangjuara/windsurf-manager:latest
 
-# Forgot keys? Run `docker logs antigravity-manager` or `grep -E '"api_key"|"admin_password"' ~/.antigravity_tools/gui_config.json`
+# Forgot keys? Run `docker logs windsurf-manager` or `grep -E '"api_key"|"admin_password"' ~/.antigravity_tools/gui_config.json`
 
 #### 🔐 Authentication Scenarios
 *   **Scenario A: Only `API_KEY` is set**
@@ -233,7 +233,7 @@ docker compose up -d
 #### macOS says "App is damaged"?
 Due to macOS security gatekeeper, non-App Store apps might show this. Run this in Terminal to fix:
 ```bash
-sudo xattr -rd com.apple.quarantine "/Applications/Antigravity Tools.app"
+sudo xattr -rd com.apple.quarantine "/Applications/Windsurf Manager.app"
 ```
 
 ## 🔌 Quick Integration Examples
@@ -247,10 +247,10 @@ sudo xattr -rd com.apple.quarantine "/Applications/Antigravity Tools.app"
 > Note: the auth URL contains a one-time local callback port. Always use the latest URL shown in the dialog. If the app isn’t running or the dialog is closed during auth, the browser may show `localhost refused connection`.
 
 ### How to use with Claude Code CLI?
-1. Start Antigravity service in the "API Proxy" tab.
+1. Start the Windsurf Manager service in the "API Proxy" tab.
 2. In your terminal:
 ```bash
-export ANTHROPIC_API_KEY="sk-antigravity"
+export ANTHROPIC_API_KEY="sk-windsurf"
 export ANTHROPIC_BASE_URL="http://127.0.0.1:8045"
 claude
 ```
@@ -258,7 +258,7 @@ claude
 ### How to use with OpenCode?
 1. Go to **API Proxy** → **External Providers** → click the **OpenCode Sync** card.
 2. Click **Sync** to generate `~/.config/opencode/opencode.json`:
-    - Creates a dedicated provider `antigravity-manager` (does not overwrite google/anthropic providers)
+    - Creates a dedicated compatibility provider `antigravity-manager` (does not overwrite Google/Anthropic providers)
     - Optional: Check **Sync accounts** to export `antigravity-accounts.json` (plugin-compatible v3 format) for the OpenCode plugin
 3. Click **Clear Config** to remove Manager configuration and clean up legacy entries; click **Restore** to revert from backup.
 4. On Windows, the path is `C:\Users\<User>\.config\opencode\` (same `~/.config/opencode` rule).
@@ -277,7 +277,7 @@ opencode run "test" --model google/antigravity-claude-sonnet-4-5-thinking --vari
 import openai
 
 client = openai.OpenAI(
-    api_key="sk-antigravity",
+    api_key="sk-windsurf",
     base_url="http://127.0.0.1:8045/v1"
 )
 
@@ -328,7 +328,7 @@ print(response.choices[0].message.content)
             -   Due to tightened Google risk control, third-party tools may be suspended for violating Terms of Service when used with Antigravity, Gemini CLI, or Gemini Code Assist.
             -   Accessing Antigravity, Gemini CLI, or Gemini Code Assist using third-party software, tools, or services (e.g., using OpenClaw and Antigravity OAuth) violates applicable terms and policies. Such actions may lead to account suspension or termination. It is recommended to only use the switching feature.
             -   **Appeal Link**: If you believe your account was suspended by mistake, please submit an appeal via [this link](https://forms.gle/hGzM9MEUv2azZsrb9).
-            -   Stay tuned to our [Telegram Channel](https://t.me/AntigravityManager) for latest updates.
+            -   Stay tuned to our [project Telegram channel](https://t.me/AntigravityManager) for the latest updates.
             -   ![Risk Warning](docs/images/CleanShot%202026-03-12%20at%2009.34.34@2x.png)
         -   **[Core Feature] Account-Aware Dynamic Model Remapping & Fallback (PR #2286)**:
             -   **Dynamic Fallback Logic**: Resolved `404/400` errors caused by inconsistent model tier access (e.g., `high` vs `low`) across different accounts. The system now automatically executes smooth fallbacks between models in the same series (e.g., `gemini-3.1-pro-high` -> `gemini-3.1-pro-low` -> default tier) based on the active account's permissions.
@@ -350,7 +350,7 @@ print(response.choices[0].message.content)
             -   **Future Plan & Roadmaps**:
                 -   New versions will be pushed in the future (potentially separating account switching and proxy features into independent modules).
                 -   However, due to work commitments, there may be delays. We appreciate your understanding.
-                -   Stay tuned to our WeChat Official Account **Ctrler** or Telegram channel [AntigravityManager](https://t.me/AntigravityManager).
+                -   Stay tuned to our WeChat Official Account **Ctrler** or the project Telegram channel [AntigravityManager](https://t.me/AntigravityManager).
             -   **Please use this project with caution.**
         -   **[Core Fix] Normalized Rate Limit Locking Across All Model Series (Fix Issue #2209)**:
             -   **Unified Normalization**: Fixed an issue where Claude and Gemini models' 429 (Too Many Requests) errors failed to trigger proper locking due to non-normalized limit keys.
@@ -2260,7 +2260,7 @@ print(response.choices[0].message.content)
         - **Protocol & Router Expansion**: Native support for OpenAI, Anthropic (Claude Code), and Gemini protocols with high-precision Model Router.
         - **Multimodal Optimization**: Deep adaptation for Imagen 3 with 100MB payload capacity and aspect ratio controls.
         - **Global Upstream Proxy**: Centralized request management supporting HTTP/SOCKS5 with hot-reloading.
-    *   See [Releases](https://github.com/lbjlaq/Antigravity-Manager/releases) for earlier history.
+    *   See [Releases](https://github.com/Irfansangjuara/windsurf-manager/releases) for earlier history.
 
     </details>
 ## 👥 Contributors
@@ -2306,5 +2306,5 @@ This project has referenced or learned from the ideas or code of the following e
 
 <div align="center">
   <p>If you find this tool helpful, please give it a ⭐️ on GitHub!</p>
-  <p>Copyright © 2025 Antigravity Team.</p>
+  <p>Copyright © 2025 Windsurf Manager contributors.</p>
 </div>
