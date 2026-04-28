@@ -1,0 +1,2 @@
+# windsurf-manager
+Windsurf Manager
